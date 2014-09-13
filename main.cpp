@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 {
     unsigned int index;
     string arguments, first, data, final_data, speed;
-    double speed_dbl, total_speed, avg_speed;
+    double speed_dbl, total_speed, avg_speed, slope_up, slope_down, delta_elevation;
     bool is_write = false,
             is_output = false,
             is_latitude = true;
@@ -176,30 +176,29 @@ int main(int argc, char* argv[])
     }
 
     if(is_output){
-        /*for (index = 0; index < latitude.size(); index++){
-            cout << latitude[index] << "," << longitude[index] << "," << elevation[index] << "," << speed_list[index] << endl;
-        }*/
-
-        cout << "La distance entre le depart et l'arrivee est : " << getDistance(latitude[0], longitude[0], latitude[latitude.size()-1], longitude[longitude.size()-1] );
+        cout << "La distance entre le depart et l'arrivee est : " << getDistance(latitude[0], longitude[0], latitude[latitude.size()-1], longitude[longitude.size()-1] ) << endl;
         cout << file_name << endl;
 
         for(index=0 ; index < speed_list.size() ; index++){
             if(speed_list[index] > 0.001){
                 speed_list_avg.push_back(speed_list[index]);
-                //cout << speed_list[index] << endl;
                 total_speed += speed_list[index];
             }
+            if(index>1){
+                delta_elevation = elevation[index] - elevation[index-1];
+                if(delta_elevation > 0){
+                    slope_down += delta_elevation;
+                }else{
+                    slope_up += delta_elevation;
+                }
+
+            }
+
         }
 
         avg_speed = total_speed / speed_list_avg.size();
-        cout << "La vitesse moyenne est de :" << avg_speed;
+        cout << "La vitesse moyenne est de :" << avg_speed << endl;
+        cout << "Le denivele est de +" << -slope_up << " metres et de -" << slope_down <<" metres";
     }
-    /*cout << latitude[0] << endl;
-    cout << longitude[0] << endl;
-    cout << latitude[latitude.size()-1] << endl;
-    cout << longitude[longitude.size()-1]  << endl;*/
-
-
-
     return 0;
 }
