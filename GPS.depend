@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1410125962 source:c:\program files (x86)\codeblocks\projet\gps\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<stdlib.h>
+	<cmath>
+	<vector>
+
