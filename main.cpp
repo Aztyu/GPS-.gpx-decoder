@@ -30,6 +30,7 @@ double getSeconds(string date){
     int hour, minute, second, field;
     string buffer;
 
+    cout << date << endl;
     field = 0;
     for(i=0;i<date.size();i++){
         if(date[i] == ':'){
@@ -50,6 +51,8 @@ double getSeconds(string date){
             buffer += date[i];
         }
     }
+    cout <<
+    cout << hour*3600 + minute*60 + second << endl;
     return hour*3600 + minute*60 + second;
 
 
@@ -255,7 +258,7 @@ int main(int argc, char* argv[])
     if(is_output){
         cout << "La distance entre le depart et l'arrivee est : " << total_crow_fly << " ,le temps est de : "<< total_time << endl;
         cout << file_name << endl;
-        cout << "La vitesse moyenne est de :" << avg_speed << "ou selon le ration distance/temps :" << 1.0*total_crow_fly/(1.0*total_time/3600)<< endl;
+        cout << "La vitesse moyenne est de :" << avg_speed << " ou selon le ration distance/temps :" << 1.0*total_crow_fly/(1.0*total_time/3600)<< endl;
         cout << "Le denivele est de +" << slope_up << " metres et de -" << -slope_down <<" metres";
     }
     return 0;
